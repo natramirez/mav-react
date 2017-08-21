@@ -19,10 +19,9 @@ var dbconfig = {
     psw:'mavpsw123',
     host:'ds151973',
     port:'51973',
-    name:'mav-exmaple'
+    name:'mav-example'
 }
-var mongoURI = 'mongodb://mav-dev:mavpsw123@ds151973.mlab.com:51973/mav-example';
-// var mongoURI = 'mongodb://'+dbconfig.user+':'+dbconfig.psw+'@'+dbconfig.host+'.mlab.com:'+dbconfig.port+'/'+dbconfig.name;
+var mongoURI = 'mongodb://'+dbconfig.user+':'+dbconfig.psw+'@'+dbconfig.host+'.mlab.com:'+dbconfig.port+'/'+dbconfig.name;
 mongoose.connect(mongoURI, { useMongoClient: true });
 
 var db = mongoose.connection;
