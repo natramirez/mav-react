@@ -53,8 +53,11 @@ router.get('/', function(req, res) {
 router.route('/questions')
   //retrieve all questions from the database
   .get(function(req, res) {
+    if (req.query && req.query.numQuestions) {
+      var numQuestions = JSON.parse(req.query.numQuestions);      
+    }
     //looks at our Question Schema
-    Questions.find(function(err, questions) {
+    Questions.aggregate({'$sample': { 'size': numQuestions }}, function(err, questions) {
       if (err) res.send(err);
       //responds with a json object of our database comments.
       res.json(questions);
