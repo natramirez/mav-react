@@ -7,21 +7,6 @@ class ExamPage extends Component {
         super(props);
         this.state = {}
     }
-
-    connectToMongoDB() {
-        var dbconfig = {
-            user:'mav-dev',
-            psw:'mavpsw123',
-            host:'ds151973',
-            port:'51973',
-            name:'mav-exmaple'
-        }
-        var mongoURI = 'mongodb://'+dbconfig.user+':'+dbconfig.psw+'@'+dbconfig.host+'.mlab.com:'+dbconfig.port+'/'+dbconfig.name;
-        mongoose.connect(mongoURI);
-    }
-    requestExam(questionCount) {
-        load_data()
-    }
     // Page Title
     // Progress bar
     // question-answer-container
