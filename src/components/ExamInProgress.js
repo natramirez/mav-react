@@ -12,6 +12,8 @@ class ExamInProgress extends Component {
         this.checkAnswer = this.checkAnswer.bind(this);
         this.saveAnswer = this.saveAnswer.bind(this);
         this.getPercentComplete = this.getPercentComplete.bind(this);
+        this.createAnswerOptions = this.createAnswerOptions.bind(this);
+        this.createAnswerForm = this.createAnswerForm.bind(this);
     }
     getInitialState() {
             this.answers = [];
@@ -75,28 +77,11 @@ class ExamInProgress extends Component {
         }
         else   this.answers.push(this.state.selectedOption);
     }
-    // createAnswerForm() {
-
-    // }
-    // createAnswerOptions() {
-
-    // }
-
-    // Page Title
-    // exam-content
-        // Progress bar
-        // question-answer-container
-            // Question number
-            // Question text
-            // answer-form
-                // Answer choices list
-                // Continue button
-            // Error message div
-  render() {
-    if (this.questions.length > 0) {
+    createAnswerForm() {
         var formSubmitFunction;
         var formSubmitText;
-        if (this.questions.length <= this.state.curQuestionNum) {
+        var formSubmitBtn;        
+        if (this.questions.length === this.state.curQuestionNum) {
             formSubmitFunction = this.onExamFinish;
             formSubmitText = "Terminar y ver calificación";
         }
@@ -104,52 +89,53 @@ class ExamInProgress extends Component {
             formSubmitFunction = this.onNextQuestion;
             formSubmitText = "Continuar";
         }
-        var answerForm;
+        var answerOptions = this.createAnswerOptions();
         if (this.state.selectedOption) {
-            let correctAnswer = this.questions[this.state.curQuestionNum-1].correct_ans;
-            let answerList = this.questions[this.state.curQuestionNum-1].answers.map(answer => {
-                var isCorrectClass;
-                var isCorrectElem;
-                if (answer.ans_id === correctAnswer) {
-                    isCorrectClass = "correctAnswer";
-                    isCorrectElem = <span> √</span>;
-                }
-                if ((this.state.selectedOption === answer.ans_id) && (correctAnswer !== answer.ans_id)) {
-                    isCorrectClass = "incorrectAnswer";
-                    isCorrectElem = <span> X</span>;
-                } 
-                return (<li key={ answer.ans_id } className={isCorrectClass} >
-                            <input type="radio"
-                                value={answer.ans_id}
-                                checked={Number(this.state.selectedOption) === answer.ans_id}
-                                disabled={true} 
-                                id={ answer.ans_id }
-                            />
-                            <span>{" "+answer.ans}<br/></span>{isCorrectElem}
-                        </li>)
-            });
-            answerForm = (<form className="answer-form" onSubmit={formSubmitFunction}>
-                            <div className="answers">{answerList}</div>
-                            <input id="next-question" type="submit" value={formSubmitText} className="btn btn-lg btn-default cont-btn"/>
-                        </form>);
+            formSubmitBtn = <input id="next-question" type="submit" value={formSubmitText} className="btn btn-lg btn-default cont-btn"/>;
         }
-        else {
-            let answerList = this.questions[this.state.curQuestionNum-1].answers.map(answer => {
-                return (<li key={ answer.ans_id }>
-                            <input type="radio"
-                                value={answer.ans_id}
-                                checked={Number(this.state.selectedOption) === answer.ans_id} 
-                                onChange={this.onOptionSelect} 
-                                id={ answer.ans_id }
-                            />
-                            <span>{" "+answer.ans}<br/></span>
-                        </li>)
-            });
-            answerForm = (<form className="answer-form" onSubmit={formSubmitFunction}>
-                            <div className="answers">{answerList}</div>
-                        </form>);
-        }  
-        
+        else formSubmitBtn = null;
+        return (
+            <form className="answer-form" onSubmit={formSubmitFunction}>
+                <div className="answers">{answerOptions}</div>
+                {formSubmitBtn}
+            </form>
+        );
+    }
+    createAnswerOptions() {
+        var isCorrectClass;
+        var isCorrectElem;
+        var correctAnswer = null;
+        var isDisabled = false;
+        if (this.state.selectedOption) {
+            correctAnswer = this.questions[this.state.curQuestionNum-1].correct_ans;
+            isDisabled = true;
+        }
+        return this.questions[this.state.curQuestionNum-1].answers.map(answer => {
+            isCorrectClass = "";
+            isCorrectElem = null;
+            if (answer.ans_id === correctAnswer) {
+                isCorrectClass = "correctAnswer";
+                isCorrectElem = <span> √</span>;
+            }
+            if ((this.state.selectedOption === answer.ans_id) && (correctAnswer !== answer.ans_id)) {
+                isCorrectClass = "incorrectAnswer";
+                isCorrectElem = <span> X</span>;
+            } 
+            return (<li key={ answer.ans_id } className={isCorrectClass} >
+                        <input type="radio"
+                            value={answer.ans_id}
+                            checked={Number(this.state.selectedOption) === answer.ans_id}
+                            disabled={isDisabled}
+                            onChange={this.onOptionSelect}  
+                            id={answer.ans_id}
+                        />
+                        <span>{" "+answer.ans}<br/></span>{isCorrectElem}
+                    </li>)
+        });
+  }
+  render() {
+    if (this.questions.length > 0) {
+        var answerForm = this.createAnswerForm();
         return (
             <div className="exam-content">
                 <ProgressBar percent={this.getPercentComplete()}/>
