@@ -6,30 +6,23 @@ class ExamInProgress extends Component {
     constructor(props) {
         super(props);
         this.state = this.getInitialState();
-
-        // this.requestExam = this.requestExam.bind(this);
-        this.onOptionChange = this.onOptionChange.bind(this);        
+        this.onOptionSelect = this.onOptionSelect.bind(this);        
         this.onNextQuestion = this.onNextQuestion.bind(this);
         this.onExamFinish = this.onExamFinish.bind(this);
+        this.checkAnswer = this.checkAnswer.bind(this);
         this.saveAnswer = this.saveAnswer.bind(this);
-
-        // if (this.state.questions.length === 0) {
-        //     this.requestExam(2);
-        // }
+        this.getPercentComplete = this.getPercentComplete.bind(this);
     }
     getInitialState() {
-        console.log('getInitialState');
-        
+            this.answers = [];
+            this.questions = [];
             return {
-                questions:[],        
-                answers:[],
                 curQuestionNum: 1,
                 selectedOption: null,
-                errorMsg: null
+                isExamFinished: false
             }
     }
     componentWillMount() {
-        console.log('componentWillMount');
         var serverURL = 'http://localhost:3001/api/questions';
         axios.get(serverURL,{
             params: {
@@ -38,65 +31,56 @@ class ExamInProgress extends Component {
           })
         .then(res => {
             console.log('res.data: ' + JSON.stringify(res.data));
-            this.setState({ 
-                questions: res.data,
-                answers:[],
-                curQuestionNum: 1,
-                selectedOption: null,
-                errorMsg: null
-             });
+            this.questions = res.data;
+            this.forceUpdate();
         });
     }
-    getPercentComplete(numComplete, total) {
-        return numComplete/total * 100;
+    getPercentComplete() {
+        let curQuestionNum = this.state.curQuestionNum;
+        let total = this.questions.length;
+        if (this.state.isExamFinished) return 100;
+        else                          return (curQuestionNum-1)/total * 100;
     }
-    onOptionChange(event) {
+    checkAnswer(answerId) {
+        return answerId === this.questions[this.state.curQuestionNum-1].correct_ans
+    }
+    onOptionSelect(event) {
+        let answerId = Number(event.target.id);
         this.setState({
-            selectedOption: Number(event.target.id),
-            errorMsg: null
+            selectedOption: answerId
           });
     }
     onNextQuestion(e) {
         e.preventDefault();
-        if (!this.state.selectedOption) {
-            this.setState({ errorMsg:"Por favor seleccione una respuesta antes de continuar." });
-        }
-        else {
-            var updatedAnswers = this.saveAnswer();
-            this.setState({
-                answers: updatedAnswers,
-                selectedOption: null,
-                errorMsg: null,
-                curQuestionNum: this.state.curQuestionNum + 1,
-            });
-        }        
+        this.saveAnswer();
+        this.setState({
+            selectedOption: null,
+            curQuestionNum: this.state.curQuestionNum + 1,
+        });       
     }
     onExamFinish(e) {
         e.preventDefault();        
-        if(!this.state.selectedOption) this.setState({ errorMsg:"Por favor seleccione una respuesta antes de continuar." });
-        else {
-            var updatedAnswers = this.saveAnswer();
-            this.setState({
-                errorMsg: null,
-                curQuestionNum: this.state.curQuestionNum + 1
-            })
-            var that = this;
-            setTimeout(function() {
-                that.props.goToResultsPage(that.state.questions, updatedAnswers);
-            }, 300);
-        }
+        this.saveAnswer();
+        this.setState({
+            isExamFinished: true
+        });
+        var that = this;
+        setTimeout(function() {
+            that.props.goToResultsPage(that.questions, that.answers);
+        }, 300);
     }
     saveAnswer() {
-        var updatedAnswersArray;
-        if (this.state.answers.length >= this.state.curQuestionNum) {
-            updatedAnswersArray = this.state.answers;
-            updatedAnswersArray[this.state.curQuestionNum-1] = this.state.selectedOption;
+        if (this.answers.length >= this.state.curQuestionNum) { //assumes that users can go back and change answers (not yet though)
+            this.answers[this.state.curQuestionNum-1] = this.state.selectedOption;
         }
-        else {
-            updatedAnswersArray = this.state.answers.concat(this.state.selectedOption);
-        }
-        return updatedAnswersArray;
+        else   this.answers.push(this.state.selectedOption);
     }
+    // createAnswerForm() {
+
+    // }
+    // createAnswerOptions() {
+
+    // }
 
     // Page Title
     // exam-content
@@ -108,20 +92,11 @@ class ExamInProgress extends Component {
                 // Answer choices list
                 // Continue button
             // Error message div
-  render() {    
-    // console.log("updated answers array: " + JSON.stringify(this.state.answers));
-    // console.log("questions array: " + JSON.stringify(this.state.questions));
-    // console.log("questions length: " + this.state.questions.length);
-    // console.log("curQuestionNum: " + this.state.curQuestionNum);    
-    
-    if (this.state.questions.length > 0) {
+  render() {
+    if (this.questions.length > 0) {
         var formSubmitFunction;
         var formSubmitText;
-        var questionIndex = this.state.curQuestionNum-1;
-        if (this.state.questions.length <= this.state.curQuestionNum) {
-            if (this.state.questions.length < this.state.curQuestionNum) {
-                questionIndex = this.state.curQuestionNum-2;
-            }
+        if (this.questions.length <= this.state.curQuestionNum) {
             formSubmitFunction = this.onExamFinish;
             formSubmitText = "Terminar y ver calificación";
         }
@@ -129,38 +104,64 @@ class ExamInProgress extends Component {
             formSubmitFunction = this.onNextQuestion;
             formSubmitText = "Continuar";
         }
-        let percentProgress = this.getPercentComplete(this.state.curQuestionNum-1, this.state.questions.length);
-        var curQuestion = this.state.questions[questionIndex];        
-        let answerList = curQuestion.answers.map(answer => {
-            return (<li key={ answer.ans_id }>
-                        <input type="radio"
-                            value={answer.ans_id}
-                            checked={Number(this.state.selectedOption) === answer.ans_id} 
-                            onChange={this.onOptionChange} 
-                            id={ answer.ans_id }
-                        />
-                        <span>{" "+answer.ans}<br/></span>
-                    </li>)
-        });
-        
+        var answerForm;
+        if (this.state.selectedOption) {
+            let correctAnswer = this.questions[this.state.curQuestionNum-1].correct_ans;
+            let answerList = this.questions[this.state.curQuestionNum-1].answers.map(answer => {
+                var isCorrectClass;
+                var isCorrectElem;
+                if (answer.ans_id === correctAnswer) {
+                    isCorrectClass = "correctAnswer";
+                    isCorrectElem = <span> √</span>;
+                }
+                if ((this.state.selectedOption === answer.ans_id) && (correctAnswer !== answer.ans_id)) {
+                    isCorrectClass = "incorrectAnswer";
+                    isCorrectElem = <span> X</span>;
+                } 
+                return (<li key={ answer.ans_id } className={isCorrectClass} >
+                            <input type="radio"
+                                value={answer.ans_id}
+                                checked={Number(this.state.selectedOption) === answer.ans_id}
+                                disabled={true} 
+                                id={ answer.ans_id }
+                            />
+                            <span>{" "+answer.ans}<br/></span>{isCorrectElem}
+                        </li>)
+            });
+            answerForm = (<form className="answer-form" onSubmit={formSubmitFunction}>
+                            <div className="answers">{answerList}</div>
+                            <input id="next-question" type="submit" value={formSubmitText} className="btn btn-lg btn-default cont-btn"/>
+                        </form>);
+        }
+        else {
+            let answerList = this.questions[this.state.curQuestionNum-1].answers.map(answer => {
+                return (<li key={ answer.ans_id }>
+                            <input type="radio"
+                                value={answer.ans_id}
+                                checked={Number(this.state.selectedOption) === answer.ans_id} 
+                                onChange={this.onOptionSelect} 
+                                id={ answer.ans_id }
+                            />
+                            <span>{" "+answer.ans}<br/></span>
+                        </li>)
+            });
+            answerForm = (<form className="answer-form" onSubmit={formSubmitFunction}>
+                            <div className="answers">{answerList}</div>
+                        </form>);
+        }  
         
         return (
             <div className="exam-content">
-                <ProgressBar percent={percentProgress}/>
+                <ProgressBar percent={this.getPercentComplete()}/>
                 <div className="question-answer-container">
-                    <h3>Pregunta {questionIndex + 1}</h3>
-                    <p className="question">{curQuestion.question}</p>
-                    <form className="answer-form" onSubmit={formSubmitFunction}>
-                        <div className="answers">{answerList}</div>
-                        <input id="next-question" type="submit" value={formSubmitText} className="btn btn-lg btn-default cont-btn"/>
-                    </form>
-                    <span className="error-msg">{this.state.errorMsg}</span>
+                    <h3>Pregunta {this.state.curQuestionNum}</h3>
+                    <p className="question">{this.questions[this.state.curQuestionNum-1].question}</p>
+                    { answerForm }
                 </div>
             </div>
         )
     }
     else {
-        console.log('rendering null');
         return (<div className="loading-msg">Cargando...</div>);
     }
   }

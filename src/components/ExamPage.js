@@ -9,17 +9,10 @@ import ExamResults from './ExamResults';
 class ExamPage extends Component {
     constructor(props) {
         super(props);
-        // this.state = this.getInitialState();
         this.goToResultsPage = this.goToResultsPage.bind(this);
         this.questions = [];
         this.userAnswers = [];
     }
-    // getInitialState() {
-    //     return {
-    //         questions:[],
-    //         answers:[]
-    //     };
-    //   }
     goToResultsPage(questionsList, userAnswersList) {
         this.questions = questionsList;
         this.userAnswers = userAnswersList;
