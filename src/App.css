@@ -22,3 +22,112 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+a {
+  text-decoration: none;
+}
+header {
+  display: flex;
+  /* position:fixed; */
+  height: 50px;
+  color: white;  
+}
+.top-nav .top-nav-list{
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+.top-nav .top-nav-list li{
+  padding: 10px;
+}
+
+footer {
+  position:fixed;
+  height: 50px;
+  background-color: red;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;
+}
+
+body {
+  margin-bottom:50px;  
+}
+
+
+.answers {
+    list-style: none;
+    text-align: left;
+    float: none;
+    margin: 0 auto;
+}
+
+.exam-content .question-answer-container .answer-form {
+  float: none;
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.exam-content .question-answer-container {
+  font-size: 20px;
+}
+
+.cont-btn {
+  float: none;
+  margin: 0 auto;
+  /*text-align: center;*/
+}
+
+.answers li.correctAnswer {
+  background: #409628;
+  display: flex;
+  justify-content: space-between;
+}
+
+.answers li.incorrectAnswer {
+  background: #ba1509;
+  display: flex;
+}
+
+.answers li.incorrectAnswer .incorrect-span, form.answer-form .answers li.incorrectAnswer .correct-span{
+  align-self: flex-end;
+}
+
+.exam-stats {
+  display: flex;
+  justify-content: center;
+}
+
+.exam-stats .grade-circle {
+  height: 150px;
+  width: 150px;
+  /* margin: auto; */
+  position: relative;
+  /* display: flex; */
+}
+.exam-stats .grade-circle span {
+  /* position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%; */
+  font-size: 40px;
+  /* width: 50%; */
+  margin: auto;
+  position: absolute;
+  top: 50%; left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+
+.exam-stats .num-correct-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left:10px;
+}
+.exam-stats .num-correct-stats div {
+  display: flex;
+  flex-direction: column;
+}

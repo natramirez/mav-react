@@ -37,14 +37,47 @@ class ExamResults extends Component {
         var numCorrect = this.getNumberCorrect();
         var numIncorrect = this.getNumberIncorrect(numCorrect);
         var gradePercent = this.getGradePercent(numCorrect);
+
         var circleColor;
-        if (this.isPassed(gradePercent)) circleColor = '#409628';
-        else                             circleColor = '#ba1509';
-        
+        var resultsMessage;
+        if (this.isPassed(gradePercent)) {
+            circleColor = '#409628';
+            resultsMessage = "¡Felicidades, has aprobado el examen!";
+        }
+        else {
+            circleColor = '#ba1509';
+            resultsMessage = "No has aprobado el examen. Continua estudiando la guia de manejo.";            
+        }
+
+        var correctText ="Preguntas correctas";
+        var incorrectText = "Preguntas incorrectas";
+        if (numCorrect === 1) correctText = "Pregunta correcta";
+        if (numIncorrect === 1) incorrectText = "Pregunta incorrecta";
+
+        var examQuestionsList = this.props.questions.map((question, index) => {
+            return <ExamQuestion key={index+1} question={question} questionNum={index+1} userAnswer={this.props.userAnswers[index]}/>
+        });
+
         return (
             <div className="exam-content">
                 <h2>Resultados</h2>
-                <GradeCircle percent={gradePercent} color={circleColor}/>
+                <p>{resultsMessage}</p>
+                <div className="exam-stats">
+                    <GradeCircle percent={gradePercent} color={circleColor}/>
+                    <div className="num-correct-stats">
+                        <div>
+                            <span id="numCorrect">{numCorrect} </span>
+                            <span id="correctText">{correctText}</span>
+                        </div>
+                        <div>
+                            <span id="numIncorrect">{numIncorrect} </span>
+                            <span id="inorrectText">{incorrectText}</span>
+                        </div>
+                    </div>
+                </div>
+                <div className="exam-questions-container">
+                    {examQuestionsList}
+                </div>
 
             </div>
         );
@@ -52,11 +85,85 @@ class ExamResults extends Component {
 }
 
 class GradeCircle extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          percent: 0,
+          color: '#ba1509'
+        };
+        // this.changeColor = true;
+        this.increase = this.increase.bind(this);
+    }
+    componentDidMount() {
+        this.increase();
+    }
+    increase() {
+        const percent = this.state.percent + 1;
+        if (percent > this.props.percent) {
+            clearTimeout(this.tm);
+            return;
+        }
+        if (percent === 80) {
+            // this.changeColor = false;
+            this.setState({
+                color: '#409628',
+                percent: percent
+            });
+            this.tm = setTimeout(this.increase, 10);
+            return;
+        }
+        this.setState({ percent: percent });
+        this.tm = setTimeout(this.increase, 10);
+    }
+    componentWillUnmount() {
+        clearTimeout(this.tm);
+    }
     render() {   
       return (
           <div className="grade-circle">
-            <Circle percent={this.props.percent} strokeWidth="3" strokeColor={this.props.color} />
+            <Circle strokeWidth="8" percent={this.state.percent} strokeColor={this.state.color} />
             <span>{this.props.percent}%</span>
+          </div>
+      )
+    }
+  }
+  class ExamQuestion extends Component {
+    render() {
+        var isCorrectClass;
+        var isCorrectElem;
+        var isDisabled = true;
+        var correctAnswer = this.props.question.correct_ans;
+        var answerOptions = this.props.question.answers.map(answer => {
+            isCorrectClass = "";
+            isCorrectElem = null;
+            if (answer.ans_id === correctAnswer) {
+                isCorrectClass = "correctAnswer";
+                isCorrectElem = <span> √</span>;
+            }
+            if ((this.props.userAnswer === answer.ans_id) && (correctAnswer !== answer.ans_id)) {
+                isCorrectClass = "incorrectAnswer";
+                isCorrectElem = <span> X</span>;
+            }
+            return(
+            <li key={ answer.ans_id } className={isCorrectClass} >
+                <input type="radio"
+                    value={answer.ans_id}
+                    checked={this.props.userAnswer === answer.ans_id}
+                    disabled={isDisabled}
+                    id={answer.ans_id}
+                />
+                <span>{" "+answer.ans}<br/></span>{isCorrectElem}
+            </li>)
+        });
+      return (
+          <div className="question-answer-container">
+            <h3>{'Pregunta ' + this.props.questionNum}</h3>
+            <p className="question">{this.props.question.question}</p>
+            <div className="answer-form">
+                <ul className="answers">
+                    {answerOptions}
+                </ul>
+            </div>
           </div>
       )
     }
