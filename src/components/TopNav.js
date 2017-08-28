@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import '../App.css';
 
 class TopNav extends Component {
   render() {
-    
     return (
     <div className="top-nav">
         <ul className="top-nav-list">
-            <li className="active">
-              <Link to="/">Inicio</Link>
+            <li className='nav-tabs'>
+              <NavLink exact to="/">Inicio</NavLink>
             </li>
-            <li>
-              <Link to="/examen_completo">Examen completo</Link>
+            <li className='nav-tabs'>
+              <NavLink to="/examen_completo">Examen completo</NavLink>
             </li>
-            <li>
-              <Link to="/examen_express">Examen express</Link>
+            <li className='nav-tabs'>
+              <NavLink to="/examen_express">Examen express</NavLink>
             </li>
-            <li>
-              <Link to="/guia_de_manejo">Guia de manejo</Link>
+            <li className='nav-tabs'>
+              <NavLink to="/guia_de_manejo">Guia de manejo</NavLink>
             </li>
         </ul>
     </div>

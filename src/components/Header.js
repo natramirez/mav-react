@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
+import logo from '../mav-logo.png';
 import '../App.css';
 import TopNav from './TopNav.js'
 

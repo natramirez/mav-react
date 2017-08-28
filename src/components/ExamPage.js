@@ -20,7 +20,7 @@ class ExamPage extends Component {
     }
     render() {
         return (
-            <div className="page-container">
+            <div className="page-content">
                 <h1 className="page-title">Examen completo: 40 preguntas</h1>
                 <Switch>
                     <Route exact path={this.props.match.path} component={ExamBegin} />

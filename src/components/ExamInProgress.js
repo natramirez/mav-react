@@ -103,7 +103,6 @@ class ExamInProgress extends Component {
     }
     createAnswerOptions() {
         var isCorrectClass;
-        var isCorrectElem;
         var correctAnswer = null;
         var isDisabled = false;
         if (this.state.selectedOption) {
@@ -112,14 +111,11 @@ class ExamInProgress extends Component {
         }
         return this.questions[this.state.curQuestionNum-1].answers.map(answer => {
             isCorrectClass = "";
-            isCorrectElem = null;
             if (answer.ans_id === correctAnswer) {
                 isCorrectClass = "correctAnswer";
-                isCorrectElem = <span className="correct-span"> √</span>;
             }
             if ((this.state.selectedOption === answer.ans_id) && (correctAnswer !== answer.ans_id)) {
                 isCorrectClass = "incorrectAnswer";
-                isCorrectElem = <span className="incorrect-span"> X</span>;
             } 
             return (<li key={ answer.ans_id } className={isCorrectClass} >
                         <input type="radio"
@@ -129,9 +125,9 @@ class ExamInProgress extends Component {
                             onChange={this.onOptionSelect}  
                             id={answer.ans_id}
                         />
-                        <span>{" "+answer.ans}<br/></span>{isCorrectElem}
+                        <span>{" "+answer.ans}<br/></span>
                     </li>)
-        });
+            });
   }
   render() {
     if (this.questions.length > 0) {

@@ -3,8 +3,9 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  /* animation: App-logo-spin infinite 20s linear; */
+  height: 100px;
+  padding: 20px;
 }
 
 .App-header {
@@ -26,36 +27,74 @@ a {
   text-decoration: none;
 }
 header {
+  width: 100%;
   display: flex;
-  /* position:fixed; */
-  height: 50px;
-  color: white;  
+  position:fixed;
+  top: 0;
+  height: 120px;
+  background-color: gray;  
+}
+.top-nav {
+  /* background-color: black; */
+  display: flex;
 }
 .top-nav .top-nav-list{
   display: flex;
   list-style: none;
   padding: 0;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .top-nav .top-nav-list li{
-  padding: 10px;
+  padding: 0px 10px;
+}
+
+.top-nav .top-nav-list li a{
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 10px 0px;
+  border-bottom: 2px solid transparent;
+}
+.top-nav .top-nav-list li a.active{
+  color: white;
+  border-bottom-color: #fff;
 }
 
 footer {
+  color: white;
+  background-color: gray;
   position:fixed;
   height: 50px;
-  background-color: red;
   bottom: 0px;
   left: 0px;
   right: 0px;
   margin-bottom: 0px;
+  padding: 10px;
 }
 
-body {
-  margin-bottom:50px;  
+main {
+  margin-top:120px;
+  margin-bottom:50px; 
+  color: #585858; 
 }
 
+main .page-content {
+  padding: 20px;
+}
+
+.page-title {
+  margin: 0;
+  padding: 20px;
+}
+
+.exam-content .progress-bar {
+  width: 80%;
+  margin: auto;
+}
 
 .answers {
+    padding: 0;
     list-style: none;
     text-align: left;
     float: none;
@@ -64,12 +103,13 @@ body {
 
 .exam-content .question-answer-container .answer-form {
   float: none;
-  margin: 0 auto;
+  margin: auto;
   display: inline-block;
 }
 
 .exam-content .question-answer-container {
   font-size: 20px;
+  padding: 20px;
 }
 
 .cont-btn {
@@ -77,20 +117,26 @@ body {
   margin: 0 auto;
   /*text-align: center;*/
 }
-
-.answers li.correctAnswer {
-  background: #409628;
+.answers li.correctAnswer, .answers li.incorrectAnswer {
   display: flex;
   justify-content: space-between;
 }
 
-.answers li.incorrectAnswer {
-  background: #ba1509;
-  display: flex;
+.answers li.correctAnswer {
+  background: #409628;
+}
+.answers li.correctAnswer::after {
+  content:'\f00c';
+  font-family: FontAwesome;
 }
 
-.answers li.incorrectAnswer .incorrect-span, form.answer-form .answers li.incorrectAnswer .correct-span{
-  align-self: flex-end;
+.answers li.incorrectAnswer {
+  background: #ba1509;
+}
+.answers li.incorrectAnswer::after {
+  content:'\f00d';
+  font-family: FontAwesome;
+  /* &#xf057; for circle with x */
 }
 
 .exam-stats {
@@ -103,21 +149,24 @@ body {
   width: 150px;
   /* margin: auto; */
   position: relative;
+  z-index: -1;
   /* display: flex; */
 }
 .exam-stats .grade-circle span {
-  /* position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%; */
   font-size: 40px;
-  /* width: 50%; */
   margin: auto;
   position: absolute;
   top: 50%; left: 50%;
   -webkit-transform: translate(-50%,-50%);
       -ms-transform: translate(-50%,-50%);
           transform: translate(-50%,-50%);
+}
+.exam-stats .grade-circle .grade-passed {
+  color: #409628;
+}
+
+.exam-stats .grade-circle .grade-failed {
+  color: #ba1509;
 }
 
 .exam-stats .num-correct-stats {
@@ -127,7 +176,38 @@ body {
   align-items: flex-start;
   padding-left:10px;
 }
+hr {
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  color: lightgray;
+}
+
 .exam-stats .num-correct-stats div {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+}
+
+.exam-stats .num-correct-stats #numCorrect, 
+.exam-stats .num-correct-stats #numIncorrect {
+  font-size: 30px;
+  font-weight:bold;
+}
+.exam-stats .num-correct-stats #correctText, 
+.exam-stats .num-correct-stats #incorrectText {
+  font-size: 15px;
+  color: gray;
+}
+.exam-stats .num-correct-stats #numCorrect {
+  color: #409628;
+}
+.exam-stats .num-correct-stats #numIncorrect {
+  color: #ba1509;
+}
+
+@media only screen and (max-device-width: 800px) {
+  .top-nav .top-nav-list{
+    justify-content: center;
+  }
 }

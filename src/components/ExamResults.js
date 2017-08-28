@@ -69,9 +69,10 @@ class ExamResults extends Component {
                             <span id="numCorrect">{numCorrect} </span>
                             <span id="correctText">{correctText}</span>
                         </div>
+                        <hr />
                         <div>
                             <span id="numIncorrect">{numIncorrect} </span>
-                            <span id="inorrectText">{incorrectText}</span>
+                            <span id="incorrectText">{incorrectText}</span>
                         </div>
                     </div>
                 </div>
@@ -91,7 +92,6 @@ class GradeCircle extends Component {
           percent: 0,
           color: '#ba1509'
         };
-        // this.changeColor = true;
         this.increase = this.increase.bind(this);
     }
     componentDidMount() {
@@ -104,7 +104,6 @@ class GradeCircle extends Component {
             return;
         }
         if (percent === 80) {
-            // this.changeColor = false;
             this.setState({
                 color: '#409628',
                 percent: percent
@@ -118,11 +117,14 @@ class GradeCircle extends Component {
     componentWillUnmount() {
         clearTimeout(this.tm);
     }
-    render() {   
+    render() {
+        var gradeClass;
+    if (this.state.percent >= 80) gradeClass = 'grade-passed';
+    else                          gradeClass = 'grade-failed';
       return (
           <div className="grade-circle">
             <Circle strokeWidth="8" percent={this.state.percent} strokeColor={this.state.color} />
-            <span>{this.props.percent}%</span>
+            <span className={gradeClass}>{this.state.percent}%</span>
           </div>
       )
     }
@@ -130,19 +132,15 @@ class GradeCircle extends Component {
   class ExamQuestion extends Component {
     render() {
         var isCorrectClass;
-        var isCorrectElem;
         var isDisabled = true;
         var correctAnswer = this.props.question.correct_ans;
         var answerOptions = this.props.question.answers.map(answer => {
             isCorrectClass = "";
-            isCorrectElem = null;
             if (answer.ans_id === correctAnswer) {
                 isCorrectClass = "correctAnswer";
-                isCorrectElem = <span> √</span>;
             }
             if ((this.props.userAnswer === answer.ans_id) && (correctAnswer !== answer.ans_id)) {
                 isCorrectClass = "incorrectAnswer";
-                isCorrectElem = <span> X</span>;
             }
             return(
             <li key={ answer.ans_id } className={isCorrectClass} >
@@ -152,7 +150,7 @@ class GradeCircle extends Component {
                     disabled={isDisabled}
                     id={answer.ans_id}
                 />
-                <span>{" "+answer.ans}<br/></span>{isCorrectElem}
+                <span>{" "+answer.ans}<br/></span>
             </li>)
         });
       return (
