@@ -24,7 +24,7 @@ class ExamPage extends Component {
                 <h1 className="page-title">Examen completo: 40 preguntas</h1>
                 <Switch>
                     <Route exact path={this.props.match.path} component={ExamBegin} />
-                    <Route exact path={this.props.match.path + '/en_proceso'} render={() => <ExamInProgress numQuestions={2} goToResultsPage={this.goToResultsPage}/>} />
+                    <Route exact path={this.props.match.path + '/en_proceso'} render={() => <ExamInProgress numQuestions={3} goToResultsPage={this.goToResultsPage}/>} />
                     <Route exact path={this.props.match.path + '/resultados'} render={() => <ExamResults questions={this.questions} userAnswers={this.userAnswers}/>} />
                 </Switch>
             </div>

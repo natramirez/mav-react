@@ -11,6 +11,7 @@ class ExamInProgress extends Component {
         this.onExamFinish = this.onExamFinish.bind(this);
         this.checkAnswer = this.checkAnswer.bind(this);
         this.saveAnswer = this.saveAnswer.bind(this);
+        this.randomizeAnswers = this.randomizeAnswers.bind(this);
         this.getPercentComplete = this.getPercentComplete.bind(this);
         this.createAnswerOptions = this.createAnswerOptions.bind(this);
         this.createAnswerForm = this.createAnswerForm.bind(this);
@@ -34,6 +35,7 @@ class ExamInProgress extends Component {
         .then(res => {
             console.log('res.data: ' + JSON.stringify(res.data));
             this.questions = res.data;
+            this.randomizeAnswers(this.state.curQuestionNum);
             this.forceUpdate();
         });
     }
@@ -41,7 +43,7 @@ class ExamInProgress extends Component {
         let curQuestionNum = this.state.curQuestionNum;
         let total = this.questions.length;
         if (this.state.isExamFinished) return 100;
-        else                          return (curQuestionNum-1)/total * 100;
+        else                          return Math.floor((curQuestionNum-1)/total * 100);
     }
     checkAnswer(answerId) {
         return answerId === this.questions[this.state.curQuestionNum-1].correct_ans
@@ -55,6 +57,7 @@ class ExamInProgress extends Component {
     onNextQuestion(e) {
         e.preventDefault();
         this.saveAnswer();
+        this.randomizeAnswers(this.state.curQuestionNum + 1);
         this.setState({
             selectedOption: null,
             curQuestionNum: this.state.curQuestionNum + 1,
@@ -77,6 +80,47 @@ class ExamInProgress extends Component {
         }
         else   this.answers.push(this.state.selectedOption);
     }
+
+    randomizeAnswers(questionNum) {
+        var index = questionNum - 1;
+        var tempAnswers = this.questions[index].answers;
+        var numAnswers = tempAnswers.length;
+        var orderArray = [];
+        for (let i = 0; i < numAnswers; i++) {
+            orderArray[i] = i;
+        }
+        orderArray = this.shuffleArray(orderArray);
+        var newAnswers = [];
+        console.log('orderArray after shuffle: ' + orderArray);
+        for (let i = 0; i < numAnswers; i++) {
+            console.log('orderArray[' + i +']: ' + orderArray[i]);
+            console.log('this.questions[index].answers[orderArray['+i+']: ' + JSON.stringify(this.questions[index].answers[orderArray[i]]));
+            // tempAnswers[i] = this.questions[index].answers[orderArray[i]];
+            newAnswers.push(tempAnswers[orderArray[i]]);
+        }
+        console.log('newAnswers: ' + JSON.stringify(newAnswers));
+        
+        this.questions[index].answers = newAnswers;
+    }
+
+    shuffleArray(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+    
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+    
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+    
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+        return array;
+    }
+
     createAnswerForm() {
         var formSubmitFunction;
         var formSubmitText;
@@ -118,14 +162,17 @@ class ExamInProgress extends Component {
                 isCorrectClass = "incorrectAnswer";
             } 
             return (<li key={ answer.ans_id } className={isCorrectClass} >
-                        <input type="radio"
-                            value={answer.ans_id}
-                            checked={Number(this.state.selectedOption) === answer.ans_id}
-                            disabled={isDisabled}
-                            onChange={this.onOptionSelect}  
-                            id={answer.ans_id}
-                        />
-                        <span>{" "+answer.ans}<br/></span>
+                        <label>
+                            <input type="radio"
+                                value={answer.ans_id}
+                                checked={Number(this.state.selectedOption) === answer.ans_id}
+                                disabled={isDisabled}
+                                onChange={this.onOptionSelect}  
+                                id={answer.ans_id}
+                            />
+                            <span>{" "+answer.ans}</span>
+                            <br />
+                        </label>
                     </li>)
             });
   }

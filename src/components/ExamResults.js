@@ -144,13 +144,16 @@ class GradeCircle extends Component {
             }
             return(
             <li key={ answer.ans_id } className={isCorrectClass} >
-                <input type="radio"
-                    value={answer.ans_id}
-                    checked={this.props.userAnswer === answer.ans_id}
-                    disabled={isDisabled}
-                    id={answer.ans_id}
-                />
-                <span>{" "+answer.ans}<br/></span>
+                <label>
+                    <input type="radio"
+                        value={answer.ans_id}
+                        checked={this.props.userAnswer === answer.ans_id}
+                        disabled={isDisabled}
+                        id={answer.ans_id}
+                    />
+                    <span>{" "+answer.ans}</span>
+                    <br/>
+                </label>
             </li>)
         });
       return (
