@@ -6,7 +6,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var Questions = require('../model/questions');
-
+var connectFailed = false;
 //and create our instances
 var app = express();
 var router = express.Router();
@@ -25,7 +25,10 @@ var mongoURI = 'mongodb://'+dbconfig.user+':'+dbconfig.psw+'@'+dbconfig.host+'.m
 mongoose.connect(mongoURI, { useMongoClient: true });
 
 var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.on('error', function(err) {
+  console.error('MongoDB connection error:', err);
+  connectFailed = true;
+});
 
 //now we should configure the APi to use bodyParser and look for JSON data in the body
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -52,12 +55,16 @@ router.get('/', function(req, res) {
 router.route('/questions')
   //retrieve all questions from the database
   .get(function(req, res) {
+    if (connectFailed) res.send({'name':'MongoError'});
     if (req.query && req.query.numQuestions) {
       var numQuestions = JSON.parse(req.query.numQuestions);      
     }
     //looks at our Question Schema
     Questions.aggregate({'$sample': { 'size': numQuestions }}, function(err, questions) {
-      if (err) res.send(err);
+      if (err) {
+        console.log('err: ' + err);
+        res.send(err);
+      }
       //responds with a json object of our database comments.
       res.json(questions);
     });

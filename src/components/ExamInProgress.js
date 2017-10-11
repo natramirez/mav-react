@@ -20,6 +20,7 @@ class ExamInProgress extends Component {
             this.answers = [];
             this.questions = [];
             return {
+                message: "Cargando...",
                 curQuestionNum: 1,
                 selectedOption: null,
                 isExamFinished: false
@@ -35,8 +36,13 @@ class ExamInProgress extends Component {
         .then(res => {
             console.log('res.data: ' + JSON.stringify(res.data));
             this.questions = res.data;
-            this.randomizeAnswers(this.state.curQuestionNum);
-            this.forceUpdate();
+            if (res.data.name && res.data.name === "MongoError") {
+                this.handleError();
+            }
+            else {
+                this.randomizeAnswers(this.state.curQuestionNum);
+                this.setState({message: null});                
+            }
         });
     }
     getPercentComplete() {
@@ -91,14 +97,14 @@ class ExamInProgress extends Component {
         }
         orderArray = this.shuffleArray(orderArray);
         var newAnswers = [];
-        console.log('orderArray after shuffle: ' + orderArray);
+        // console.log('orderArray after shuffle: ' + orderArray);
         for (let i = 0; i < numAnswers; i++) {
-            console.log('orderArray[' + i +']: ' + orderArray[i]);
-            console.log('this.questions[index].answers[orderArray['+i+']: ' + JSON.stringify(this.questions[index].answers[orderArray[i]]));
+            // console.log('orderArray[' + i +']: ' + orderArray[i]);
+            // console.log('this.questions[index].answers[orderArray['+i+']: ' + JSON.stringify(this.questions[index].answers[orderArray[i]]));
             // tempAnswers[i] = this.questions[index].answers[orderArray[i]];
             newAnswers.push(tempAnswers[orderArray[i]]);
         }
-        console.log('newAnswers: ' + JSON.stringify(newAnswers));
+        // console.log('newAnswers: ' + JSON.stringify(newAnswers));
         
         this.questions[index].answers = newAnswers;
     }
@@ -176,8 +182,11 @@ class ExamInProgress extends Component {
                     </li>)
             });
   }
+  handleError() {
+      this.setState({message: "Un error ha occurrido. Por favor intentarlo de nuevo mas tarde."});
+  }
   render() {
-    if (this.questions.length > 0) {
+    if (!this.state.message) {
         var answerForm = this.createAnswerForm();
         return (
             <div className="exam-content">
@@ -191,7 +200,7 @@ class ExamInProgress extends Component {
         )
     }
     else {
-        return (<div className="loading-msg">Cargando...</div>);
+        return (<div className="loading-msg">{this.state.message}</div>);
     }
   }
 }

@@ -5,11 +5,12 @@ class DriversGuidePage extends Component {
     return (
         <div className="page-content">
             <h1 className="welcome-heading">Guia de manejo</h1>
-            <p className="welcome-lead">En esta pagina, usted podra encontrar examenes que le van a ayudar a prepararse <br/>
-                para el examen escrito para sacar el permiso de manejo en el estado de Washington.</p>
             <p className="welcome-lead">
-                <a href="#" className="btn btn-lg btn-default">Ver un ejemplo</a>
-            </p>
+                En esta pagina usted puede encontrar la guia de manejo del Estado de Washington Department of Licensing.
+                Es muy importante que estudie cada pagina de esta guia, incluyendo la portada hasta la contraportada, por que las preguntas de los examenes estan totalmente basadas en el contenido de esta guia.</p>
+            <object className="drivers-guide-object" width="600" height="800" data="http://www.dol.wa.gov/driverslicense/docs/driverguide-spanish.pdf">
+            No se pudo cargar la guia de manejo. Por favor intentelo mas tarde.
+            </object>
         </div>
     );
   }

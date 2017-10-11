@@ -4,15 +4,21 @@
 
 .App-logo {
   /* animation: App-logo-spin infinite 20s linear; */
-  height: 100px;
-  padding: 20px;
+  height: 300px;
+  padding: 20px 20px 0px 35px;
 }
 
 .App-header {
   background-color: #222;
   height: 150px;
   padding: 20px;
-  color: white;
+}
+
+a, a:visited {
+  color: #52BE80;
+}
+html, body {
+  height: 100%;  
 }
 
 .App-intro {
@@ -28,15 +34,18 @@ a {
 }
 header {
   width: 100%;
-  display: flex;
+  /* display: flex; */
+  /* align-items: center; */
+  justify-content: center;
   /* position:fixed; */
   /* top: 0; */
   /* height: 120px; */
-  background-color: #D4EFDF;  
+  background-color: #2C3E50;  
 }
 .top-nav {
   /* background-color: black; */
   display: flex;
+  justify-content: center;
 }
 .top-nav .top-nav-list{
   display: flex;
@@ -51,33 +60,31 @@ header {
 }
 
 .top-nav .top-nav-list li a{
-  color: #266634;
+  color: #A9CCE3;
   font-weight: bold;
   font-size: 16px;
   padding: 10px 0px;
   border-bottom: 2px solid transparent;
 }
 .top-nav .top-nav-list li a.active{
-  color: #266634;
-  border-bottom-color: #266634;
+  color: #A9CCE3;
+  border-bottom-color: #A9CCE3;
 }
 
 footer {
   color: white;
-  background-color: gray;
-  /* position:fixed; */
-  height: 50px;
-  /* bottom: 0px;
-  left: 0px;
-  right: 0px; */
-  /* margin-bottom: 0px; */
+  background-color: #2C3E50;
+  height: 120px;
   padding: 10px;
 }
 
 main {
-  /* margin-top:120px; */
-  /* margin-bottom:50px;  */
-  color: #585858; 
+  background: #2C3E50;
+  height: 400px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 main .page-content {
@@ -243,12 +250,28 @@ input[type=radio] {
   /* width: 80%; */
 }
 
+.drivers-guide-object {
+  width: 100%;
+  height: 300px;
+  /* border: 5px solid #666; */
+}
+
 @media (max-width: 800px) {
+  .App-logo {
+    padding-left: 35px;
+    padding-right: 0px;
+  }
   .top-nav .top-nav-list{
     justify-content: center;
   }
   .exam-questions-container .question-answer-container .answer-form, 
   .exam-questions-container .question-answer-container .answer-form .answers {
     width: 100%;
+  }
+
+  .drivers-guide-object {
+    width: 100%;
+    height: 500px;
+    /* border: 5px solid #666; */
   }
 }
