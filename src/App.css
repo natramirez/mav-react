@@ -80,7 +80,7 @@ footer {
 
 main {
   background: #2C3E50;
-  height: 400px;
+  /* height: 400px; */
   color: white;
   display: flex;
   flex-direction: column;
