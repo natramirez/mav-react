@@ -184,7 +184,7 @@ main .page-content {
 }
 
 .exam-stats .grade-circle .grade-failed {
-  color: #ba1509;
+  color: #EC7063;
 }
 
 .exam-stats .num-correct-stats {
@@ -221,7 +221,7 @@ hr {
   color: #409628;
 }
 .exam-stats .num-correct-stats #numIncorrect {
-  color: #ba1509;
+  color: #EC7063;
 }
 
 .exam-questions-container .question-answer-container .answer-form, 

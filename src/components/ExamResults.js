@@ -45,7 +45,7 @@ class ExamResults extends Component {
             resultsMessage = "¡Felicidades, has aprobado el examen!";
         }
         else {
-            circleColor = '#ba1509';
+            circleColor = '#EC7063';
             resultsMessage = "No has aprobado el examen. Continua estudiando la guia de manejo.";            
         }
 
