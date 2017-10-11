@@ -119,16 +119,16 @@ class GradeCircle extends Component {
     }
     render() {
         var gradeClass;
-    if (this.state.percent >= 80) gradeClass = 'grade-passed';
-    else                          gradeClass = 'grade-failed';
-      return (
-          <div className="grade-circle">
-            <Circle strokeWidth="8" percent={this.state.percent} strokeColor={this.state.color} />
-            <span className={gradeClass}>{this.state.percent}%</span>
-          </div>
-      )
+        if (this.state.percent >= 80) gradeClass = 'grade-passed';
+        else                          gradeClass = 'grade-failed';
+        return (
+            <div className="grade-circle">
+                <Circle strokeWidth="8" percent={this.state.percent} strokeColor={this.state.color} />
+                <span className={gradeClass}>{this.state.percent}%</span>
+            </div>
+        )
+        }
     }
-  }
   class ExamQuestion extends Component {
     render() {
         var isCorrectClass;

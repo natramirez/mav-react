@@ -168,10 +168,7 @@ main .page-content {
 .exam-stats .grade-circle {
   height: 150px;
   width: 150px;
-  /* margin: auto; */
   position: relative;
-  z-index: -1;
-  /* display: flex; */
 }
 .exam-stats .grade-circle span {
   font-size: 40px;
