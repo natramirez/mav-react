@@ -5,6 +5,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var path = require('path');
 var Questions = require('../model/questions');
 var connectFailed = false;
 //and create our instances
@@ -12,8 +13,9 @@ var app = express();
 var router = express.Router();
 
 //set our port to either a predetermined port number if you have set it up, or 3001
-var port = process.env.API_PORT || 3001;
+var port = process.env.API_PORT || 8080;
 
+// connect to mongodb using mongodb URI
 var dbconfig = {
     user:'mav-dev',
     psw:'mavpsw123',
@@ -41,12 +43,12 @@ app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
 
-  //and remove cacheing so we get the most recent comments
+  //and remove caching so we get the most recent comments
   res.setHeader('Cache-Control', 'no-cache');
   next();
 });
 
-//now  we can set the route path & initialize the API
+//now we can set the route path & initialize the API
 router.get('/', function(req, res) {
   res.json({ message: 'API Initialized!'});
 });
@@ -65,13 +67,23 @@ router.route('/questions')
         console.log('err: ' + err);
         res.send(err);
       }
-      //responds with a json object of our database comments.
+      //responds with a json object of our database questions.
       res.json(questions);
     });
   });
 
 //Use our router configuration when we call /api
 app.use('/api', router);
+let reactRoute = (req, res, next) => {
+  res.render('index', {title:'Express'});
+}
+// Serve static assets
+app.use(express.static(path.resolve(__dirname, '..', 'build')));
+
+// Always return the main index.html, so react-router render the route in the client
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
+});
 
 //starts the server and listens for requests
 app.listen(port, function() {
