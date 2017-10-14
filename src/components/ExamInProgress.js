@@ -27,7 +27,9 @@ class ExamInProgress extends Component {
             }
     }
     componentWillMount() {
-        var serverURL = 'http://localhost:3001/api/questions';
+        var port = process.env.API_PORT || 3001;
+        var host = window.location.hostname;
+        var serverURL = 'http://' + host + ':' + port + '/api/questions';
         axios.get(serverURL,{
             params: {
               numQuestions: this.props.numQuestions
