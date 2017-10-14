@@ -29,7 +29,7 @@ class ExamInProgress extends Component {
     componentWillMount() {
         var port = process.env.API_PORT || 3001;
         var host = window.location.hostname;
-        var serverURL = 'http://' + host + ':' + port + '/api/questions';
+        var serverURL = 'http://' + host + '/api/questions';
         axios.get(serverURL,{
             params: {
               numQuestions: this.props.numQuestions
