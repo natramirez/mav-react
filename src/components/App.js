@@ -11,7 +11,7 @@ class App extends Component {
         <Header/>
         <Main/>
         <footer>
-          My copyright message.
+          © 2017 Mujer Al Volante, Superación Constante
         </footer>
       </div>
 
