@@ -5,7 +5,7 @@ class ExamBegin extends Component {
     render() {
         return (
             <div className="exam-content">
-                <Link to={this.props.match.path+"/en_proceso"}>Comenzar examen</Link>
+                <Link to={this.props.match.path+"/en_proceso"}>COMENZAR EXAMEN</Link>
             </div>
         );
     }

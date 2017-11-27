@@ -74,16 +74,9 @@ router.route('/questions')
 
 //Use our router configuration when we call /api
 app.use('/api', router);
-let reactRoute = (req, res, next) => {
-  res.render('index', {title:'Express'});
-}
+
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
-
-// Always return the main index.html, so react-router render the route in the client
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
-});
 
 //starts the server and listens for requests
 app.listen(port, function() {
