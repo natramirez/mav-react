@@ -57,10 +57,14 @@ router.get('/', function(req, res) {
 router.route('/questions')
   //retrieve all questions from the database
   .get(function(req, res) {
-    if (connectFailed) res.send({'name':'MongoError'});
+    if (connectFailed) {
+      console.log("connectFailed boolean is true")
+      res.send({'name':'MongoError'})
+  };
     if (req.query && req.query.numQuestions) {
       var numQuestions = JSON.parse(req.query.numQuestions);      
     }
+    console.log("numQuestions: " + numQuestions)
     //looks at our Question Schema
     Questions.aggregate({'$sample': { 'size': numQuestions }}, function(err, questions) {
       if (err) {
@@ -69,15 +73,16 @@ router.route('/questions')
       }
       //responds with a json object of our database questions.
       res.json(questions);
-    });
+    }).cursor({});
   });
 
 //Use our router configuration when we call /api
 app.use('/api', router);
 
-// Serve static assets
-app.use(express.static(path.resolve(__dirname, '..', 'build')));
-
+if (process.env.NODE_ENV === 'production') {
+  // Serve static assets
+  app.use(express.static(path.resolve(__dirname, '..', 'build')));
+}
 //starts the server and listens for requests
 app.listen(port, function() {
   console.log(`api running on port ${port}`);

@@ -27,8 +27,8 @@ class ExamInProgress extends Component {
             }
     }
     componentWillMount() {
-        var port = process.env.API_PORT || 3001;
-        var host = window.location.hostname;
+        // var port = process.env.API_PORT || 3000;
+        // var host = window.location.hostname;
         // 'https://' + host +
         var serverURL =  '/api/questions';
         axios.get(serverURL,{
@@ -46,6 +46,18 @@ class ExamInProgress extends Component {
                 this.randomizeAnswers(this.state.curQuestionNum);
                 this.setState({message: null});                
             }
+        }).catch(error => {
+            if (error.response) {
+                // The request was made, but the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+              } else {
+                // Something happened in setting up the request that triggered an Error
+                console.log('Error', error.message);
+              }
+              console.log(error.config);
         });
     }
     getPercentComplete() {
