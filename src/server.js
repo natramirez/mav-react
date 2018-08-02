@@ -66,14 +66,19 @@ router.route('/questions')
     }
     console.log("numQuestions: " + numQuestions)
     //looks at our Question Schema
-    Questions.aggregate({'$sample': { 'size': numQuestions }}, function(err, questions) {
-      if (err) {
-        console.log('err: ' + err);
-        res.send(err);
-      }
-      //responds with a json object of our database questions.
+    var cursor = Questions.aggregate([{'$sample': { 'size': numQuestions }}], {cursor: {}})
+    .exec(function(err, cursor) {
+      var questions = [];
+      cursor.each(function(err, doc) {
+        if (err) {
+          console.log('err: ' + err);
+          res.send(err);
+        }
+        console.log("doc " + i+": " + doc);
+        questions.push(doc);
+      });
       res.json(questions);
-    }).cursor({});
+    });
   });
 
 //Use our router configuration when we call /api
