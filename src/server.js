@@ -66,17 +66,12 @@ router.route('/questions')
     }
     console.log("numQuestions: " + numQuestions)
     //looks at our Question Schema
-    var cursor = Questions.aggregate([{'$sample': { 'size': numQuestions }}], {cursor: {}})
-    .exec(function(err, cursor) {
-      var questions = [];
-      cursor.each(function(err, doc) {
-        if (err) {
-          console.log('err: ' + err);
-          res.send(err);
-        }
-        console.log("doc " + i+": " + doc);
-        questions.push(doc);
-      });
+    Questions.aggregate({'$sample': { 'size': numQuestions }})
+    .exec(function(err, questions) {
+      if (err) {
+        console.log('err: ' + err);
+        res.send(err);
+      }
       res.json(questions);
     });
   });
@@ -84,10 +79,9 @@ router.route('/questions')
 //Use our router configuration when we call /api
 app.use('/api', router);
 
-if (process.env.NODE_ENV === 'production') {
-  // Serve static assets
-  app.use(express.static(path.resolve(__dirname, '..', 'build')));
-}
+// Serve static assets
+app.use(express.static(path.resolve(__dirname, '..', 'build')));
+
 //starts the server and listens for requests
 app.listen(port, function() {
   console.log(`api running on port ${port}`);
