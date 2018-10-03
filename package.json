@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",
+    "cors": "^2.8.4",
     "mongoose": "^4.11.7",
     "nodemon": "^1.11.0",
     "rc-progress": "^2.2.2",

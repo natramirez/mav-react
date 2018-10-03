@@ -57,17 +57,19 @@ router.get('/', function(req, res) {
 router.route('/questions')
   //retrieve all questions from the database
   .get(function(req, res) {
-    if (connectFailed) res.send({'name':'MongoError'});
+    if (connectFailed) {
+      res.send({'name':'MongoError'})
+  };
     if (req.query && req.query.numQuestions) {
       var numQuestions = JSON.parse(req.query.numQuestions);      
     }
     //looks at our Question Schema
-    Questions.aggregate({'$sample': { 'size': numQuestions }}, function(err, questions) {
+    Questions.aggregate({'$sample': { 'size': numQuestions }})
+    .exec(function(err, questions) {
       if (err) {
         console.log('err: ' + err);
         res.send(err);
       }
-      //responds with a json object of our database questions.
       res.json(questions);
     });
   });
