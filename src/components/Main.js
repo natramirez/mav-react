@@ -22,7 +22,7 @@ class Main extends Component {
       return (
         <ExamPage
         examType={"express"}
-        numQuestions={10}
+        numQuestions={5}
         />
       )
     };
