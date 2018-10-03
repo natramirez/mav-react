@@ -29,7 +29,6 @@ class ExamInProgress extends Component {
     componentWillMount() {
         var port = process.env.API_PORT || 3001;
         var host = window.location.hostname;
-        // 'https://' + host +
         var serverURL =  '/api/questions';
         axios.get(serverURL,{
             params: {
@@ -37,7 +36,6 @@ class ExamInProgress extends Component {
             }
           })
         .then(res => {
-            console.log('res.data: ' + JSON.stringify(res.data));
             this.questions = res.data;
             if (res.data.name && res.data.name === "MongoError") {
                 this.handleError();
@@ -100,15 +98,9 @@ class ExamInProgress extends Component {
         }
         orderArray = this.shuffleArray(orderArray);
         var newAnswers = [];
-        // console.log('orderArray after shuffle: ' + orderArray);
         for (let i = 0; i < numAnswers; i++) {
-            // console.log('orderArray[' + i +']: ' + orderArray[i]);
-            // console.log('this.questions[index].answers[orderArray['+i+']: ' + JSON.stringify(this.questions[index].answers[orderArray[i]]));
-            // tempAnswers[i] = this.questions[index].answers[orderArray[i]];
             newAnswers.push(tempAnswers[orderArray[i]]);
-        }
-        // console.log('newAnswers: ' + JSON.stringify(newAnswers));
-        
+        }        
         this.questions[index].answers = newAnswers;
     }
 

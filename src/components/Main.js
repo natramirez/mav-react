@@ -8,12 +8,30 @@ import DriversGuidePage from './DriversGuidePage';
 import NotFoundPage from './NotFoundPage';
 
 class Main extends Component {
+  
   render() {
+    const ExamPageCompleto = (props) => {
+      return (
+        <ExamPage
+        examType={"completo"}
+        numQuestions={40}
+        />
+      )
+    };
+    const ExamPageExpress = (props) => {
+      return (
+        <ExamPage
+        examType={"express"}
+        numQuestions={10}
+        />
+      )
+    };
     return (
         <main>
           <Switch>
-            <Route exact path="/" component={WelcomePage} />
-            <Route path="/examen_completo" component={ExamPage} />
+            <Route exact path="/" component={WelcomePage}/>
+            <Route path="/examen_completo" render={ExamPageCompleto}/>
+            <Route path="/examen_express" render={ExamPageExpress}/>
             {/* <Route exact path="/examen_express" component={QuizPage} /> */}
             <Route exact path="/guia_de_manejo" component={DriversGuidePage} />
             <Route path="*" component={NotFoundPage}/>
