@@ -32,7 +32,6 @@ class Main extends Component {
             <Route exact path="/" component={WelcomePage}/>
             <Route path="/examen_completo" render={ExamPageCompleto}/>
             <Route path="/examen_express" render={ExamPageExpress}/>
-            {/* <Route exact path="/examen_express" component={QuizPage} /> */}
             <Route exact path="/guia_de_manejo" component={DriversGuidePage} />
             <Route path="*" component={NotFoundPage}/>
           </Switch>
