@@ -3,9 +3,9 @@ import { Switch, Route } from 'react-router-dom';
 
 import WelcomePage from './WelcomePage';
 import ExamPage from './ExamPage';
-import QuizPage from './QuizPage';
 import DriversGuidePage from './DriversGuidePage';
 import NotFoundPage from './NotFoundPage';
+import SignUpIn from './SignUpIn';
 
 class Main extends Component {
   
@@ -33,6 +33,7 @@ class Main extends Component {
             <Route path="/examen_completo" render={ExamPageCompleto}/>
             <Route path="/examen_express" render={ExamPageExpress}/>
             <Route exact path="/guia_de_manejo" component={DriversGuidePage} />
+            <Route exact path="/ingresar_cuenta" component={SignUpIn}/>
             <Route path="*" component={NotFoundPage}/>
           </Switch>
         </main>

@@ -63,7 +63,7 @@ class ExamInProgress extends Component {
         else                          return Math.floor((curQuestionNum-1)/total * 100);
     }
     checkAnswer(answerId) {
-        return answerId === this.questions[this.state.curQuestionNum-1].correct_ans
+        return answerId === this.questions[this.state.curQuestionNum-1].correctAnswer
     }
     onOptionSelect(event) {
         let answerId = Number(event.target.id);
@@ -161,7 +161,7 @@ class ExamInProgress extends Component {
         var correctAnswer = null;
         var isDisabled = false;
         if (this.state.selectedOption) {
-            correctAnswer = this.questions[this.state.curQuestionNum-1].correct_ans;
+            correctAnswer = this.questions[this.state.curQuestionNum-1].correctAnswer;
             isDisabled = true;
         }
         return this.questions[this.state.curQuestionNum-1].answers.map(answer => {

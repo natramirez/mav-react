@@ -6,7 +6,6 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var path = require('path');
-var Questions = require('../model/questions');
 var connectFailed = false;
 //and create our instances
 var app = express();
@@ -24,13 +23,19 @@ var dbconfig = {
     name:'mav-example'
 }
 var mongoURI = 'mongodb://'+dbconfig.user+':'+dbconfig.psw+'@'+dbconfig.host+'.mlab.com:'+dbconfig.port+'/'+dbconfig.name;
-mongoose.connect(mongoURI, { useMongoClient: true });
+mongoose.connect(mongoURI, {useMongoClient:true});
+mongoose.Promise = global.Promise;
 
-var db = mongoose.connection;
-db.on('error', function(err) {
-  console.error('MongoDB connection error:', err);
-  connectFailed = true;
-});
+// .then(() => {}, err => {
+//   console.error('MongoDB connection error:', err);
+//   connectFailed = true;
+// });
+
+// var db = mongoose.connection;
+// db.on('error', function(err) {
+//   console.error('MongoDB connection error:', err);
+//   connectFailed = true;
+// });
 
 //now we should configure the APi to use bodyParser and look for JSON data in the body
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -48,34 +53,47 @@ app.use(function(req, res, next) {
   next();
 });
 
+var authRoutes = require('./server/routes/api/signin');
+var apiRoutes = require('./server/routes/auth/exam');
+
+// console.log(JSON.stringify(authRoutes.stack[0].route));
+
 //now we can set the route path & initialize the API
-router.get('/', function(req, res) {
-  res.json({ message: 'API Initialized!'});
-});
+// router.get('/', function(req, res) {
+//   res.json({ message: 'API Initialized!'});
+// });
 
 //adding the /questions route to our /api router
-router.route('/questions')
+// router.route('/questions')
   //retrieve all questions from the database
-  .get(function(req, res) {
-    if (connectFailed) {
-      res.send({'name':'MongoError'})
-  };
-    if (req.query && req.query.numQuestions) {
-      var numQuestions = JSON.parse(req.query.numQuestions);      
-    }
-    //looks at our Question Schema
-    Questions.aggregate({'$sample': { 'size': numQuestions }})
-    .exec(function(err, questions) {
-      if (err) {
-        console.log('err: ' + err);
-        res.send(err);
-      }
-      res.json(questions);
-    });
-  });
+  // router.get('/questions', function(req, res) {
+  //   if (connectFailed) {
+  //     res.send({'name':'MongoError'})
+  // };
+  //   if (req.query && req.query.numQuestions) {
+  //     var numQuestions = JSON.parse(req.query.numQuestions);      
+  //   }
+  //   //looks at our Question Schema
+  //   Questions.aggregate({'$sample': { 'size': numQuestions }})
+  //   .exec(function(err, questions) {
+  //     if (err) {
+  //       console.log('err: ' + err);
+  //       res.send(err);
+  //     }
+  //     res.json(questions);
+  //   });
+  // });
+// console.log("router: ", router);
 
-//Use our router configuration when we call /api
-app.use('/api', router);
+// //Use our router configuration when we call /api
+
+app.use('/api', apiRoutes);
+
+console.log("api routes:");
+console.log(apiRoutes);
+app.use('/auth',authRoutes);
+console.log("auth routes:");
+console.log(authRoutes);
 
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
@@ -84,3 +102,4 @@ app.use(express.static(path.resolve(__dirname, '..', 'build')));
 app.listen(port, function() {
   console.log(`api running on port ${port}`);
 });
+
