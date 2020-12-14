@@ -1,0 +1,703 @@
+﻿[
+{
+"question":"Para cambiar de carril, usted debe:",
+     "answers":[
+          {
+            "ans": "Señalizar, revisar sus espejos, revisar su punto ciego en la dirección hacia donde quiere moverse y cambiar de carril.", "ans_id": 1
+          },
+          {
+            "ans": "Revisar sus espejos, señalizar y cambiar de carril.", "ans_id": 2
+          },
+          {
+            "ans": "Señalizar, revisar sus espejos y cambiar de carril.", "ans_id": 3
+          },
+          {
+            "ans": "Señalizar y cambiar de carril.", "ans_id": 4
+          }
+    ],
+    "correct_ans":1
+  },
+{
+"question":"Antes de cambiar de dirección, debe mantener encendidas las luces direccionales hasta al menos:",
+     "answers":[
+          {
+            "ans": "50 pies.", "ans_id": 1
+          },
+          {
+            "ans": "75 pies.", "ans_id": 2
+          },
+          {
+            "ans": "125 pies.", "ans_id": 3
+          },
+          {
+            "ans": "100 pies.", "ans_id": 4
+          }
+    ],
+    "correct_ans":4
+  },
+{
+"question":"En una vía con 2 carriles que viajan en direcciones opuestas, los vehículos lentos deben estacionarse cuando sea seguro para que lo rebasen los demás si:",
+     "answers":[
+          {
+            "ans": "Si hay 5 o más vehículos formando una línea detrás de usted y no es seguro para ellos rebasarlo.", "ans_id": 1
+          },
+          {
+            "ans": "Si hay 2 vehículos o más formando una línea detrás de usted y no es seguro para ellos rebasarlo.", "ans_id": 2
+          },
+          {
+            "ans": "En el camino hay señales de vehículos de movimiento lento.", "ans_id": 3
+          },
+          {
+            "ans": "Hay un vehículo detrás.", "ans_id": 4
+          }
+    ],
+    "correct_ans":1
+  },
+{
+"question":"Cuando maneje de noche, su bicicleta debe tener una luz delantera de color blanco visible desde:",
+     "answers":[
+          {
+            "ans": "600 pies.", "ans_id": 1
+          },
+          {
+            "ans": "300 pies.", "ans_id": 2
+          },
+          {
+            "ans": "500 pies.", "ans_id": 3
+          },
+          {
+            "ans": "400 pies.", "ans_id": 4
+          }
+    ],
+    "correct_ans":2
+  },
+{
+"question":"Una línea amarilla continua en su lado de la línea central significa que:",
+     "answers":[
+          {
+            "ans": "Rebase con precaución.", "ans_id": 1
+          },
+          {
+            "ans": "Baje la velocidad.", "ans_id": 2
+          },
+          {
+            "ans": "Siga recto en las inclinaciones.", "ans_id": 3
+          },
+          {
+            "ans": "No rebase.", "ans_id": 4
+          }
+    ],
+    "correct_ans":4
+  },
+{
+"question":"Una luz amarilla intermitente significa que debe:",
+     "answers":[
+          {
+            "ans": "Detenerse y esperar la luz verde.", "ans_id": 1
+          },
+          {
+            "ans": "Acelerar para atravesar rápidamente la intersección.", "ans_id": 2
+          },
+          {
+            "ans": "Detenerse y continuar con cuidado.", "ans_id": 3
+          },
+          {
+            "ans": "Detenerse, mirar y continuar si no hay vehículos.", "ans_id": 4
+          }
+    ],
+    "correct_ans":4
+  },
+{
+"question":"Debe atenuar sus luces altas cuando esté a menos de:",
+     "answers":[
+          {
+            "ans": "300 pies de un vehículo que se acerca.", "ans_id": 1
+          },
+          {
+            "ans": "500 pies de un vehículo que se acerca.", "ans_id": 2
+          },
+          {
+            "ans": "250 pies de un vehículo que se acerca.", "ans_id": 3
+          },
+          {
+            "ans": "100 pies de un vehículo que se acerca.", "ans_id": 4
+          }
+    ],
+    "correct_ans":1
+  },
+{
+"question":"Si se detiene en el camino de noche, usted debe:",
+     "answers":[
+          {
+            "ans": "Encender las luces de emergencia y encender las luces bajas.", "ans_id": 1
+          },
+          {
+            "ans": "Usar solo las luces de estacionar.", "ans_id": 2
+          },
+          {
+            "ans": "Apagar todas las luces.", "ans_id": 3
+          },
+          {
+            "ans": "Usar las luces delanteras solamente.", "ans_id": 4
+          }
+    ],
+    "correct_ans":1
+  },
+{
+"question":"En el Estado de Washington, una persona se considera legalmente ebria cuando su concentración de alcohol en sangre (BAC) es de:",
+     "answers":[
+          {
+            "ans": "Igual o mayor a 1 por ciento.", "ans_id": 1
+          },
+          {
+            "ans": "Igual o mayor a .08 por ciento.", "ans_id": 2
+          },
+          {
+            "ans": "Igual o mayor a .01 por ciento.", "ans_id": 3
+          },
+          {
+            "ans": "Igual o mayor a .12 por ciento.", "ans_id": 4
+          }
+    ],
+    "correct_ans":1
+  },
+{
+"question":"Si ve luces rojas intermitentes una al lado de la otra en un cruce de vía de tren, usted debe:",
+     "answers":[
+          {
+            "ans": "Detenerse.", "ans_id": 1
+          },
+          {
+            "ans": "Hacer una señal antes de continuar.", "ans_id": 2
+          },
+          {
+            "ans": "Bajar la velocidad.", "ans_id": 3
+          },
+          {
+            "ans": "Mantener la velocidad y cruzar la vía.", "ans_id": 4
+          }
+    ],
+    "correct_ans":1
+  },
+{
+"question":"Cuando vaya por el carril de tráfico:",
+     "answers":[
+          {
+            "ans": "Puede hacer una vuelta en U o devolverse si se equivoca de rampa de entrada de la autopista.", "ans_id": 1
+          },
+          {
+            "ans": "No se detenga por ninguna razón. Siga moviéndose hasta que pueda salir de forma segura del camino.", "ans_id": 2
+          },
+          {
+            "ans": "Puede detenerse para buscar una dirección.", "ans_id": 3
+          },
+          {
+            "ans": "Puede detenerse para dejar salir pasajeros.", "ans_id": 4
+          }
+    ],
+    "correct_ans":2
+  },
+{
+"question":"En una intersección sin control, usted debe:",
+     "answers":[
+          {
+            "ans": "Bajar la velocidad y ceder el paso a cualquier vehículo en la intersección y a los vehículos que vengan de la derecha.", "ans_id": 1
+          },
+          {
+            "ans": "Acelerar y despejar rápidamente la intersección.", "ans_id": 2
+          },
+          {
+            "ans": "Tomar el derecho de paso con cuidado.", "ans_id": 3
+          },
+          {
+            "ans": "Esperar a que otro semáforo le señale que puede continuar.", "ans_id": 4
+          }
+    ],
+    "correct_ans":3
+  },
+{
+"question":"Para evitar estar en el punto ciego de un conductor de camión o autobús y ayudarlos a ver, usted debe:",
+     "answers":[
+          {
+            "ans": "Encender y apagar las luces.", "ans_id": 1
+          },
+          {
+            "ans": "Evitar conducir de cualquiera de los dos lados y no seguirlo de cerca.", "ans_id": 2
+          },
+          {
+            "ans": "Nunca rebasarlos.", "ans_id": 3
+          },
+          {
+            "ans": "Sonar su claxon.", "ans_id": 4
+          }
+    ],
+    "correct_ans":2
+  },
+{
+"question":"Cuando ves a un autobús escolar en el camino con 2 carriles en sentidos opuestos, usted debe detenerse:",
+     "answers":[
+          {
+            "ans": "Si las luces rojas de advertencia del autobús están intermitentes.", "ans_id": 1
+          },
+          {
+            "ans": "Si el autobús está fuera del camino y las luces amarillas están intermitentes.", "ans_id": 2
+          },
+          {
+            "ans": "Si el autobús tiene luces amarillas intermitentes.", "ans_id": 3
+          },
+          {
+            "ans": "Solo si va en la misma dirección que el autobús.", "ans_id": 4
+          }
+    ],
+    "correct_ans":1
+  },
+{
+"question":"La forma correcta de usar una rampa de salida de la autopista es:",
+     "answers":[
+          {
+            "ans": "No bajar la velocidad hasta que ya esté en la rampa de salida.", "ans_id": 1
+          },
+          {
+            "ans": "Bajar la velocidad antes de entrar a la rampa de salida.", "ans_id": 2
+          },
+          {
+            "ans": "Rebasar a los vehículos más lentos en la rampa de salida.", "ans_id": 3
+          },
+          {
+            "ans": "Mantener su velocidad constante una vez esté sobre la rampa de salida.", "ans_id": 4
+          }
+    ],
+    "correct_ans":1
+  },
+{
+"question":"Si sus frenos dejan de funcionar, usted debe: ",
+     "answers":[
+          {
+            "ans": "Presionar varias veces el pedal de freno e intentar acumular presión en los frenos.", "ans_id": 1
+          },
+          {
+            "ans": "Encender y apagar las luces a los demás vehículos.", "ans_id": 2
+          },
+          {
+            "ans": "Salir inmediatamente de un salto del vehículo.", "ans_id": 3
+          },
+          {
+            "ans": "Cambiar la transmisión del vehículo a neutro.", "ans_id": 4
+          }
+    ],
+    "correct_ans":1
+  },
+{
+"question":"Si va a dar vuelta a la izquierda a una calle de un solo sentido, usted debe completar la vuelta en:",
+     "answers":[
+          {
+            "ans": "Cualquier carril.", "ans_id": 1
+          },
+          {
+            "ans": "El carril más cercano al lado de donde viene.", "ans_id": 2
+          },
+          {
+            "ans": "Ningún carril.", "ans_id": 3
+          },
+          {
+            "ans": "El carril derecho.", "ans_id": 4
+          }
+    ],
+    "correct_ans":2
+  },
+{
+"question":"Cuando el conductor detrás de usted quiere rebasar, usted debe:",
+     "answers":[
+          {
+            "ans": "Acelerar.", "ans_id": 1
+          },
+          {
+            "ans": "Bajar la velocidad y dejar espacio frente a su vehículo y para que los otros conductores terminen de rebasarlo más rápidamente.", "ans_id": 2
+          },
+          {
+            "ans": "Mantener la misma velocidad.", "ans_id": 3
+          },
+          {
+            "ans": "Cambiar de carril.", "ans_id": 4
+          }
+    ],
+    "correct_ans":2
+  },
+{
+"question":"Por ley, las luces de su vehículo deben ser encendidas desde:",
+     "answers":[
+          {
+            "ans": "1 hora antes del atardecer y 1 hora antes del amanecer.", "ans_id": 1
+          },
+          {
+            "ans": "1 hora después del atardecer y 1 hora después del amanecer.", "ans_id": 2
+          },
+          {
+            "ans": "30 minutos después del atardecer y hasta 30 minutos antes del amanecer.", "ans_id": 3
+          },
+          {
+            "ans": "30 minutos antes del atardecer y hasta 30 minutos antes del amanecer.", "ans_id": 4
+          }
+    ],
+    "correct_ans":3
+  },
+{
+"question":"Cuando rebase a otro vehículo en un camino con 2 carriles que van en sentidos opuestos, usted debe:",
+     "answers":[
+          {
+            "ans": "Regresar al carril donde haya suficiente espacio entre usted y el vehículo que acaba de rebasar.", "ans_id": 1
+          },
+          {
+            "ans": "Regrese al lado derecho de la calzada inmediatamente.", "ans_id": 2
+          },
+          {
+            "ans": "Permanecer en el carril izquierdo si quiere dar vuelta a la izquierda. ", "ans_id": 3
+          },
+          {
+            "ans": "Manejar en cualquier carril.", "ans_id": 4
+          }
+    ],
+    "correct_ans":1
+  },
+{
+"question":"Usted puede estacionar o detenerse en la cuneta de una autopista:",
+     "answers":[
+          {
+            "ans": "Mientras tenga encendidas sus luces cuádruples intermitentes (de emergencia).", "ans_id": 1
+          },
+          {
+            "ans": "Si ninguna parte del vehículo está sobre la vía.", "ans_id": 2
+          },
+          {
+            "ans": "Solo si tiene una emergencia.", "ans_id": 3
+          },
+          {
+            "ans": "Si necesita revisar un mapa o direcciones.", "ans_id": 4
+          }
+    ],
+    "correct_ans":3
+  },
+{
+"question":"Un ciclista que no obedece las reglas de tránsito:",
+     "answers":[
+          {
+            "ans": "Está bien porque los ciclistas no tienen que seguir las reglas de tránsito.", "ans_id": 1
+          },
+          {
+            "ans": "Se le incautará la bicicleta.", "ans_id": 2
+          },
+          {
+            "ans": "Puede recibir una infracción.", "ans_id": 3
+          },
+          {
+            "ans": "Siempre recibirá una advertencia de parte de una autoridad.", "ans_id": 4
+          }
+    ],
+    "correct_ans":3
+  },
+{
+"question":"Los conductores que entran a una intersección para dar vuelta a la izquierda:",
+     "answers":[
+          {
+            "ans": "Pueden esperar en la intersección hasta que la luz se ponga amarilla antes de dar vuelta a la izquierda.", "ans_id": 1
+          },
+          {
+            "ans": "No deben entrar en una intersección a menos que puedan atravesarla completamente sin detenerse.", "ans_id": 2
+          },
+          {
+            "ans": "Deben esperar hasta que aparezca la flecha verde antes de dar vuelta a la izquierda.", "ans_id": 3
+          },
+          {
+            "ans": "Pueden esperar en la intersección hasta que puedan dar vuelta a la izquierda.", "ans_id": 4
+          }
+    ],
+    "correct_ans":2
+  },
+{
+"question":"Lo más importante que debe recordar al manejar en reversa es:",
+     "answers":[
+          {
+            "ans": "Mantener ambas manos en el volante.", "ans_id": 1
+          },
+          {
+            "ans": "Mantener un pie en el freno mientras va en reversa.", "ans_id": 2
+          },
+          {
+            "ans": "Mirar hacia atrás con cuidado y ceder el paso a otros vehículos y peatones.", "ans_id": 3
+          },
+          {
+            "ans": "Usar el espejo retrovisor cuando maneja en reversa.", "ans_id": 4
+          }
+    ],
+    "correct_ans":2
+  },
+{
+"question":"En caminos resbalosos, usted debe:",
+     "answers":[
+          {
+            "ans": "Bajar la velocidad.", "ans_id": 1
+          },
+          {
+            "ans": "No manejar más rápido de 20 millas por hora.", "ans_id": 2
+          },
+          {
+            "ans": "Acelerar.", "ans_id": 3
+          },
+          {
+            "ans": "Ir al límite de velocidad sin precaución.", "ans_id": 4
+          }
+    ],
+    "correct_ans":1
+  },
+{
+"question":"Un semáforo con una luz roja continua significa que debe:",
+     "answers":[
+          {
+            "ans": "Maneje rápidamente por la intersección.", "ans_id": 1
+          },
+          {
+            "ans": "Detenerse y no continuar mientras la luz esté rojo.", "ans_id": 2
+          },
+          {
+            "ans": "Detenerse, verificar que no hay peligro y cruzar la intersección.", "ans_id": 3
+          },
+          {
+            "ans": "Baje la velocidad y ceda el paso a los demás vehículos.", "ans_id": 4
+          }
+    ],
+    "correct_ans":2
+  },
+{
+"question":"No se debe estacionar a menos de:",
+     "answers":[
+          {
+            "ans": "30 pies de un hidrante.", "ans_id": 1
+          },
+          {
+            "ans": "10 pies de un hidrante.", "ans_id": 2
+          },
+          {
+            "ans": "15 pies de un hidrante.", "ans_id": 3
+          },
+          {
+            "ans": "20 pies de un hidrante.", "ans_id": 4
+          }
+    ],
+    "correct_ans":3
+  },
+{
+"question":"Cuando va manejando en una vía con 2 carriles en sentidos contrarios, usted:",
+     "answers":[
+          {
+            "ans": "Puede manejar en cualquier carril.", "ans_id": 1
+          },
+          {
+            "ans": "Puede usar el carril derecho excepto cuando está rebasando legalmente a otro vehículo.", "ans_id": 2
+          },
+          {
+            "ans": "Pude usar el carril izquierdo si va a dar vuelta a la izquierda.", "ans_id": 3
+          },
+          {
+            "ans": "Puede usar el carril con menos tráfico.", "ans_id": 4
+          }
+    ],
+    "correct_ans":2
+  },
+{
+"question":"El comprador de un vehículo debe traspasar la propiedad y el registro:",
+     "answers":[
+          {
+            "ans": "Dentro de los 60 días desde la fecha de compra.", "ans_id": 1
+          },
+          {
+            "ans": "Antes de que venza la placa de licencia.", "ans_id": 2
+          },
+          {
+            "ans": "Al final del año.", "ans_id": 3
+          },
+          {
+            "ans": "Dentro de máximo 15 días desde la fecha de compra.", "ans_id": 4
+          }
+    ],
+    "correct_ans":4
+  },
+{
+"question":"Si hay heridos, un fallecimiento o $700 o más en daños a la propiedad de 1 persona, usted debe informar del accidente a las autoridades dentro de máximo:",
+     "answers":[
+          {
+            "ans": "10 días.", "ans_id": 1
+          },
+          {
+            "ans": "5 días.", "ans_id": 2
+          },
+          {
+            "ans": "4 días.", "ans_id": 3
+          },
+          {
+            "ans": "2 días.", "ans_id": 4
+          }
+    ],
+    "correct_ans":3
+  },
+{
+"question":"De noche, baje la velocidad y siempre:",
+     "answers":[
+          {
+            "ans": "Use la luz interior para ver mejor el velocímetro.", "ans_id": 1
+          },
+          {
+            "ans": "Use sus luces altas hasta que los otros conductores atenúen sus luces.", "ans_id": 2
+          },
+          {
+            "ans": "Use gafas de sol para reducir el brillo de las luces altas. ", "ans_id": 3
+          },
+          {
+            "ans": "Use luces altas cuando no vengan vehículos en dirección contraria.", "ans_id": 4
+          }
+    ],
+    "correct_ans":4
+  },
+{
+"question":"Cuando se estacione cuesta arriba en un bordillo, debe poner el freno de estacionar y:",
+     "answers":[
+          {
+            "ans": "Girar el volante en dirección contraria al bordillo.", "ans_id": 1
+          },
+          {
+            "ans": "Girar el volante en la dirección del bordillo.", "ans_id": 2
+          },
+          {
+            "ans": "Mantener las ruedas delanteras rectas.", "ans_id": 3
+          },
+          {
+            "ans": "Mantener las ruedas traseras contra el bordillo.", "ans_id": 4
+          }
+    ],
+    "correct_ans":1
+  },
+{
+"question":"Si su vehículo empieza a derrapar, gire el volante:",
+     "answers":[
+          {
+            "ans": "En la dirección que quiere que vaya el vehículo.", "ans_id": 1
+          },
+          {
+            "ans": "En cualquier dirección. Da igual.", "ans_id": 2
+          },
+          {
+            "ans": "En el lado opuesto al que derrapa.", "ans_id": 3
+          },
+          {
+            "ans": "Para mantener las ruedas delanteras derechas.", "ans_id": 4
+          }
+    ],
+    "correct_ans":1
+  },
+{
+"question":"Cuando maneja en la niebla:",
+     "answers":[
+          {
+            "ans": "No importa qué luces use.", "ans_id": 1
+          },
+          {
+            "ans": "Use sus luces bajas.", "ans_id": 2
+          },
+          {
+            "ans": "Use sus luces de estacionar.", "ans_id": 3
+          },
+          {
+            "ans": "Use sus luces altas.", "ans_id": 4
+          }
+    ],
+    "correct_ans":2
+  },
+{
+"question":"Cuando ve a otros conductores actuando o reaccionado con ira, usted debería:",
+     "answers":[
+          {
+            "ans": "Apartarse de la situación. ", "ans_id": 1
+          },
+          {
+            "ans": "Hacer todas las demás opciones.", "ans_id": 2
+          },
+          {
+            "ans": "Bajar la velocidad, apártarse o hacer lo que pueda de forma segura.", "ans_id": 3
+          },
+          {
+            "ans": "No hacer contacto visual.", "ans_id": 4
+          }
+    ],
+    "correct_ans":2
+  },
+{
+"question":"Una primera sentencia por manejar bajo la influencia de alcohol o cualquier droga puede resultar en una suspensión de licencia de al menos:",
+     "answers":[
+          {
+            "ans": "1 año.", "ans_id": 1
+          },
+          {
+            "ans": "2 años.", "ans_id": 2
+          },
+          {
+            "ans": "90 días.", "ans_id": 3
+          },
+          {
+            "ans": "30 días.", "ans_id": 4
+          }
+    ],
+    "correct_ans":3
+  },
+{
+"question":"Para ayudar a evitar choques, usted debe:",
+     "answers":[
+          {
+            "ans": "Comunicarse con otros conductores en la vía.", "ans_id": 1
+          },
+          {
+            "ans": "Ignorar a otros conductores en la vía.", "ans_id": 2
+          },
+          {
+            "ans": "Evitar manejar durante la hora pico.", "ans_id": 3
+          },
+          {
+            "ans": "Manejar por calles laterales y alternativas.", "ans_id": 4
+          }
+    ],
+    "correct_ans":1
+  },
+{
+"question":"Generalmente, ¿de cuántos tragos de alcohol se puede deshacer el cuerpo humano por hora?",
+     "answers":[
+          {
+            "ans": "2 tragos.", "ans_id": 1
+          },
+          {
+            "ans": "1 trago.", "ans_id": 2
+          },
+          {
+            "ans": "3 tragos.", "ans_id": 3
+          },
+          {
+            "ans": "½ trago.", "ans_id": 4
+          }
+    ],
+    "correct_ans":2
+  },
+{
+"question":"Cuando esté entrando al tráfico vehicular desde un acceso privado:",
+     "answers":[
+          {
+            "ans": "Tiene el derecho de paso.", "ans_id": 1
+          },
+          {
+            "ans": "Debe ceder el paso a todos los vehículos en la vía.", "ans_id": 2
+          },
+          {
+            "ans": "Puede entrar solamente si hay un semáforo.", "ans_id": 3
+          },
+          {
+            "ans": "Debe mandar a alguien a que detenga el tráfico por donde va a entrar.", "ans_id": 4
+          }
+    ],
+    "correct_ans":2
+  }]
