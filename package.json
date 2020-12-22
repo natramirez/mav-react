@@ -5,7 +5,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "cors": "^2.8.4",
-    "mongoose": "^4.11.7",
+    "mongoose": "^5.3.16",
     "nodemon": "^1.11.0",
     "rc-progress": "^2.2.2",
     "react": "^15.6.1",

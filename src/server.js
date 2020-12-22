@@ -19,12 +19,10 @@ var port = process.env.PORT || 8080;
 var dbconfig = {
     user:'mav-dev',
     psw:'mavpsw123',
-    host:'ds151973',
-    port:'51973',
-    name:'mav-example'
+    name:'mav'
 }
-var mongoURI = 'mongodb://'+dbconfig.user+':'+dbconfig.psw+'@'+dbconfig.host+'.mlab.com:'+dbconfig.port+'/'+dbconfig.name;
-mongoose.connect(mongoURI, { useMongoClient: true });
+var mongoURI = 'mongodb+srv://'+dbconfig.user+':'+dbconfig.psw+'@mav.8ttt5.mongodb.net/mav?retryWrites=true&w=majority/'+dbconfig.name;
+mongoose.connect(mongoURI, { useNewUrlParser: true });
 
 var db = mongoose.connection;
 db.on('error', function(err) {
@@ -64,12 +62,13 @@ router.route('/questions')
       var numQuestions = JSON.parse(req.query.numQuestions);      
     }
     //looks at our Question Schema
-    Questions.aggregate({'$sample': { 'size': numQuestions }})
+    Questions.aggregate([{'$sample': { 'size': numQuestions }}])
     .exec(function(err, questions) {
       if (err) {
         console.log('err: ' + err);
         res.send(err);
       }
+      console.log(questions);
       res.json(questions);
     });
   });
