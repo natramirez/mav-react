@@ -6,7 +6,8 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var path = require('path');
-var Questions = require('../model/questions');
+var Questions = require('./server/models/Questions');
+
 var connectFailed = false;
 //and create our instances
 var app = express();
@@ -46,6 +47,11 @@ app.use(function(req, res, next) {
   next();
 });
 
+// var authRoutes = require('./server/routes/api/signin');
+// var apiRoutes = require('./server/routes/auth/exam');
+
+// console.log(JSON.stringify(authRoutes.stack[0].route));
+
 //now we can set the route path & initialize the API
 router.get('/', function(req, res) {
   res.json({ message: 'API Initialized!'});
@@ -83,3 +89,4 @@ app.use(express.static(path.resolve(__dirname, '..', 'build')));
 app.listen(port, function() {
   console.log(`api running on port ${port}`);
 });
+

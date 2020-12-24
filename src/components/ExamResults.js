@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { Circle } from 'rc-progress';
 
 
@@ -14,7 +14,7 @@ class ExamResults extends Component {
     getNumberCorrect() {
         var numCorrect = 0;
         for (var i = 0; i < this.props.questions.length; i++) {
-            if (this.props.userAnswers[i] === this.props.questions[i].correct_ans) {
+            if (this.props.userAnswers[i] === this.props.questions[i].correctAnswer) {
                 numCorrect++;
             }
         }
@@ -31,9 +31,6 @@ class ExamResults extends Component {
         return percent >= 80;
     }
     render() {
-        console.log('props questions: ' + JSON.stringify(this.props.questions));
-        console.log('props answers: ' + this.props.userAnswers);
-
         var numCorrect = this.getNumberCorrect();
         var numIncorrect = this.getNumberIncorrect(numCorrect);
         var gradePercent = this.getGradePercent(numCorrect);
@@ -133,7 +130,7 @@ class GradeCircle extends Component {
     render() {
         var isCorrectClass;
         var isDisabled = true;
-        var correctAnswer = this.props.question.correct_ans;
+        var correctAnswer = this.props.question.correctAnswer;
         var answerOptions = this.props.question.answers.map(answer => {
             isCorrectClass = "";
             if (answer.ans_id === correctAnswer) {

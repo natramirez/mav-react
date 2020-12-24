@@ -3,7 +3,6 @@ import { Switch, Route } from 'react-router-dom';
 
 import WelcomePage from './WelcomePage';
 import ExamPage from './ExamPage';
-import QuizPage from './QuizPage';
 import DriversGuidePage from './DriversGuidePage';
 import NotFoundPage from './NotFoundPage';
 
